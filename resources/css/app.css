@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .section-title {
+        @apply relative mb-6 flex items-center gap-3 font-heading text-2xl font-bold text-primary dark:text-white;
+    }
+    .section-title::after {
+        content: '';
+        @apply h-[3px] flex-1 rounded bg-gradient-to-r from-accent to-transparent;
+    }
+    .category-badge {
+        @apply inline-block rounded px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white;
+    }
+    .news-card {
+        @apply overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:bg-gray-900 dark:shadow-none dark:ring-1 dark:ring-white/10 dark:hover:shadow-none dark:hover:ring-accent/40;
+    }
+    .surface-card {
+        @apply rounded-lg bg-white shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:shadow-none dark:ring-1 dark:ring-white/10;
+    }
+    .icon-chip {
+        @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition dark:bg-white/10 dark:text-accent;
+    }
+    .news-card-thumb {
+        @apply relative aspect-[16/10] overflow-hidden bg-secondary dark:bg-gray-800;
+    }
+    .news-card-thumb img {
+        @apply h-full w-full object-cover transition-transform duration-500 group-hover:scale-110;
+    }
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition duration-150 hover:bg-primary-light active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100;
+    }
+    .btn-accent {
+        @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-primary-dark transition duration-150 hover:brightness-95 active:scale-[0.97] disabled:opacity-50;
+    }
+    .btn-outline {
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-primary px-4 py-2 text-sm font-semibold text-primary transition duration-150 hover:bg-primary hover:text-white active:scale-[0.97] dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-primary-dark;
+    }
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2 rounded-md bg-danger px-4 py-2 text-sm font-semibold text-white transition duration-150 hover:brightness-110 active:scale-[0.97] disabled:opacity-50;
+    }
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold text-gray-600 transition duration-150 hover:bg-secondary active:scale-[0.97];
+    }
+    .skeleton {
+        @apply animate-pulse rounded bg-secondary dark:bg-gray-800;
+    }
+}
