@@ -1,6 +1,6 @@
 <div>
     @if ($main)
-        <section class="mx-auto max-w-7xl px-4 py-8">
+        <section id="kategori-{{ $category->slug }}" class="mx-auto max-w-7xl scroll-mt-28 px-4 py-8">
             <x-section-title :title="$category->name" :link="route('category.show', $category->slug)" />
 
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">

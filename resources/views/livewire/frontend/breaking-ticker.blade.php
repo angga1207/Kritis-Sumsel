@@ -1,8 +1,8 @@
 <div>
     @if ($articles->isNotEmpty())
-        <div class="overflow-hidden border-b border-white/10 bg-danger">
+        <div class="overflow-hidden border-b border-white/10 bg-gradient-to-r from-danger to-rose-500">
             <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2">
-                <span class="flex shrink-0 items-center gap-1 rounded bg-white px-2 py-1 text-xs font-extrabold uppercase tracking-wide text-danger">
+                <span class="flex shrink-0 items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide text-danger shadow-sm">
                     <svg class="h-3 w-3 animate-pulse" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
                     Breaking
                 </span>

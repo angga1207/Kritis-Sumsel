@@ -28,7 +28,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="bg-secondary font-sans antialiased dark:bg-gray-950">
         <div class="grid min-h-screen grid-cols-1 lg:grid-cols-2">
             {{-- Brand panel --}}
             <div class="relative hidden overflow-hidden bg-primary-dark lg:flex lg:flex-col lg:justify-between lg:p-12">
@@ -77,7 +77,7 @@
             </div>
 
             {{-- Form panel --}}
-            <div class="flex flex-col justify-center bg-secondary/40 px-6 py-12 dark:bg-gray-950 sm:px-12 lg:px-16">
+            <div class="flex flex-col justify-center bg-secondary px-6 py-12 dark:bg-gray-950 sm:px-12 lg:px-16">
                 <div class="mx-auto w-full max-w-sm" data-aos="fade-up" data-aos-duration="400">
                     <a href="{{ route('home') }}" wire:navigate class="mb-8 flex items-center gap-2.5 lg:hidden">
                         <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary text-accent">

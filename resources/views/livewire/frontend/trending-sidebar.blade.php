@@ -7,7 +7,7 @@
         <ol class="space-y-4">
             @foreach ($trending as $trendIndex => $trendArticle)
                 <li class="flex gap-3">
-                    <span class="font-heading text-2xl font-extrabold text-secondary [-webkit-text-stroke:1px_#0B2545] dark:text-gray-800 dark:[-webkit-text-stroke:1px_#F4B400]">{{ $trendIndex + 1 }}</span>
+                    <span class="font-heading text-2xl font-extrabold text-secondary [-webkit-text-stroke:1px_#0D9488] dark:text-gray-800 dark:[-webkit-text-stroke:1px_#FBBF24]">{{ $trendIndex + 1 }}</span>
                     <a href="{{ route('article.show', $trendArticle->slug) }}" wire:navigate class="min-w-0">
                         <h4 class="text-sm font-semibold leading-snug text-primary-dark line-clamp-2 hover:text-primary-light dark:text-gray-100 dark:hover:text-accent">{{ $trendArticle->title }}</h4>
                         <span class="mt-1 flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">

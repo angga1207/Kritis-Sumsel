@@ -16,18 +16,43 @@ export default {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#0B2545',
-                    dark: '#061530',
-                    light: '#13315C',
+                    DEFAULT: '#0D9488',
+                    dark: '#0F766E',
+                    light: '#14B8A6',
                 },
-                accent: '#F4B400',
-                secondary: '#E8ECF3',
+                accent: '#FBBF24',
+                'accent-warm': '#FB923C',
+                secondary: '#EEF7F6',
                 danger: '#DC2626',
                 success: '#16A34A',
             },
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
-                heading: ['"Playfair Display"', ...defaultTheme.fontFamily.serif],
+                heading: ['Sora', ...defaultTheme.fontFamily.sans],
+            },
+            keyframes: {
+                shimmer: {
+                    '0%': { backgroundPosition: '-200% 0' },
+                    '100%': { backgroundPosition: '200% 0' },
+                },
+                'pulse-soft': {
+                    '0%, 100%': { opacity: 1 },
+                    '50%': { opacity: 0.6 },
+                },
+                'float-up': {
+                    '0%': { opacity: 0, transform: 'translateY(12px)' },
+                    '100%': { opacity: 1, transform: 'translateY(0)' },
+                },
+                marquee: {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                },
+            },
+            animation: {
+                shimmer: 'shimmer 2.5s linear infinite',
+                'pulse-soft': 'pulse-soft 2.4s ease-in-out infinite',
+                'float-up': 'float-up 0.5s ease-out both',
+                marquee: 'marquee 28s linear infinite',
             },
         },
     },
