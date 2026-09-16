@@ -1,6 +1,7 @@
 @php
     $categories = \App\Models\Category::active()->whereNull('parent_id')->with(['children' => fn ($q) => $q->active()->orderBy('order')])->orderBy('order')->get();
     $siteName = \App\Models\Setting::get('site_name', config('app.name'));
+    $siteLogo = \App\Models\Setting::get('site_logo', '');
 @endphp
 <header
     x-data="{
@@ -19,16 +20,20 @@
     class="sticky top-0 z-50 border-b border-slate-900/5 bg-white/90 backdrop-blur-md transition-all duration-300 dark:border-white/10 dark:bg-gray-950/90">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4">
         <a href="{{ route('home') }}" wire:navigate class="group flex items-center gap-2 shrink-0">
-            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-white shadow-sm shadow-primary/30 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
-                <x-heroicon-s-bolt class="h-5 w-5" />
-            </span>
-            <span class="font-heading text-xl font-extrabold tracking-tight text-slate-800 dark:text-white sm:text-2xl">
-                @if (Str::contains($siteName, 'Sumsel'))
-                    {{ trim(Str::before($siteName, 'Sumsel')) }}<span class="text-primary">Sumsel</span>
-                @else
-                    {{ $siteName }}
-                @endif
-            </span>
+            @if ($siteLogo)
+                <img src="{{ $siteLogo }}" alt="{{ $siteName }}" class="h-9 w-auto max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105">
+            @else
+                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-white shadow-sm shadow-primary/30 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
+                    <x-heroicon-s-bolt class="h-5 w-5" />
+                </span>
+                <span class="font-heading text-xl font-extrabold tracking-tight text-slate-800 dark:text-white sm:text-2xl">
+                    @if (Str::contains($siteName, 'Sumsel'))
+                        {{ trim(Str::before($siteName, 'Sumsel')) }}<span class="text-primary">Sumsel</span>
+                    @else
+                        {{ $siteName }}
+                    @endif
+                </span>
+            @endif
         </a>
 
         <nav class="hidden items-center gap-1 lg:flex">

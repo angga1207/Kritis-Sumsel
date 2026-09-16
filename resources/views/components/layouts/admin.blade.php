@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="color-scheme" content="light dark">
+    <link rel="icon" href="{{ \App\Models\Setting::get('site_favicon', '') ?: '/favicon.ico' }}">
     <script>
         (function () {
             var theme = localStorage.getItem('theme');
@@ -40,13 +41,20 @@
         <aside :class="[sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0', sidebarCollapsed ? 'lg:w-20' : 'lg:w-64']"
             class="fixed inset-y-0 left-0 z-40 flex w-64 transform flex-col bg-primary-dark transition-all duration-300 ease-in-out">
 
+            @php
+                $siteLogo = \App\Models\Setting::get('site_logo', '');
+            @endphp
             <div class="flex h-16 shrink-0 items-center gap-2.5 px-5" :class="sidebarCollapsed && 'lg:justify-center lg:px-0'">
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent text-primary-dark">
-                    <x-heroicon-s-newspaper class="h-5 w-5" />
-                </span>
-                <span class="font-heading text-lg font-extrabold text-white transition-opacity duration-200" x-show="!sidebarCollapsed" x-cloak>
-                    Kritis<span class="text-accent">Sumsel</span>
-                </span>
+                @if ($siteLogo)
+                    <img src="{{ $siteLogo }}" alt="Logo" class="h-9 w-auto object-contain" :class="sidebarCollapsed ? 'max-w-[36px]' : 'max-w-[150px]'">
+                @else
+                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent text-primary-dark">
+                        <x-heroicon-s-newspaper class="h-5 w-5" />
+                    </span>
+                    <span class="font-heading text-lg font-extrabold text-white transition-opacity duration-200" x-show="!sidebarCollapsed" x-cloak>
+                        Kritis<span class="text-accent">Sumsel</span>
+                    </span>
+                @endif
             </div>
 
             <nav class="mt-2 flex-1 space-y-6 overflow-y-auto px-3 pb-4">

@@ -5,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="color-scheme" content="light dark">
+        <link rel="icon" href="{{ \App\Models\Setting::get('site_favicon', '') ?: '/favicon.ico' }}">
+
+        @php
+            $siteLogo = \App\Models\Setting::get('site_logo', '');
+        @endphp
 
         @php
             $authTitles = [
@@ -35,12 +40,18 @@
                 <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 20% 20%, rgba(244,180,0,0.18), transparent 45%), radial-gradient(circle at 80% 70%, rgba(19,49,92,0.6), transparent 50%);"></div>
 
                 <a href="{{ route('home') }}" wire:navigate class="relative z-10 flex items-center gap-2.5">
-                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent text-primary-dark">
-                        <x-heroicon-s-newspaper class="h-5 w-5" />
-                    </span>
-                    <span class="font-heading text-xl font-extrabold text-white">
-                        Kritis<span class="text-accent">Sumsel</span>
-                    </span>
+                    @if ($siteLogo)
+                        <span class="inline-flex rounded-lg bg-white/95 p-1.5 shadow-sm">
+                            <img src="{{ $siteLogo }}" alt="Logo" class="h-7 w-auto max-w-[150px] object-contain">
+                        </span>
+                    @else
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent text-primary-dark">
+                            <x-heroicon-s-newspaper class="h-5 w-5" />
+                        </span>
+                        <span class="font-heading text-xl font-extrabold text-white">
+                            Kritis<span class="text-accent">Sumsel</span>
+                        </span>
+                    @endif
                 </a>
 
                 <div class="relative z-10 max-w-md">
@@ -80,12 +91,16 @@
             <div class="flex flex-col justify-center bg-secondary px-6 py-12 dark:bg-gray-950 sm:px-12 lg:px-16">
                 <div class="mx-auto w-full max-w-sm" data-aos="fade-up" data-aos-duration="400">
                     <a href="{{ route('home') }}" wire:navigate class="mb-8 flex items-center gap-2.5 lg:hidden">
-                        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary text-accent">
-                            <x-heroicon-s-newspaper class="h-5 w-5" />
-                        </span>
-                        <span class="font-heading text-lg font-extrabold text-primary-dark dark:text-white">
-                            Kritis<span class="text-accent">Sumsel</span>
-                        </span>
+                        @if ($siteLogo)
+                            <img src="{{ $siteLogo }}" alt="Logo" class="h-9 w-auto max-w-[150px] object-contain">
+                        @else
+                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary text-accent">
+                                <x-heroicon-s-newspaper class="h-5 w-5" />
+                            </span>
+                            <span class="font-heading text-lg font-extrabold text-primary-dark dark:text-white">
+                                Kritis<span class="text-accent">Sumsel</span>
+                            </span>
+                        @endif
                     </a>
 
                     <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">

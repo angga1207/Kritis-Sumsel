@@ -1,6 +1,7 @@
 @php
     $footerCategories = \App\Models\Category::active()->whereNull('parent_id')->orderBy('order')->take(8)->get();
     $siteName = \App\Models\Setting::get('site_name', config('app.name'));
+    $siteLogo = \App\Models\Setting::get('site_logo', '');
     $siteTagline = \App\Models\Setting::get('site_tagline', 'Kanal berita independen yang menyajikan informasi kritis, akurat, dan terkini seputar Sumatera Selatan.');
     $socials = [
         'Facebook' => \App\Models\Setting::get('facebook_url', ''),
@@ -12,13 +13,19 @@
 <footer class="mt-16 bg-primary-dark text-white">
     <div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-            <span class="font-heading text-xl font-extrabold text-white">
-                @if (Str::contains($siteName, 'Sumsel'))
-                    {{ trim(Str::before($siteName, 'Sumsel')) }}<span class="text-accent">Sumsel</span>{{ trim(Str::after($siteName, 'Sumsel')) }}
-                @else
-                    {{ $siteName }}
-                @endif
-            </span>
+            @if ($siteLogo)
+                <span class="inline-flex rounded-lg bg-white/95 p-1.5 shadow-sm">
+                    <img src="{{ $siteLogo }}" alt="{{ $siteName }}" class="h-7 w-auto max-w-[150px] object-contain">
+                </span>
+            @else
+                <span class="font-heading text-xl font-extrabold text-white">
+                    @if (Str::contains($siteName, 'Sumsel'))
+                        {{ trim(Str::before($siteName, 'Sumsel')) }}<span class="text-accent">Sumsel</span>{{ trim(Str::after($siteName, 'Sumsel')) }}
+                    @else
+                        {{ $siteName }}
+                    @endif
+                </span>
+            @endif
             <p class="mt-3 text-sm leading-relaxed text-white/70">
                 {{ $siteTagline }}
             </p>

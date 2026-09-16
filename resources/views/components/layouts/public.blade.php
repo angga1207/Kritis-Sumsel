@@ -16,11 +16,13 @@
     @php
         $pageTitle = $title ?? \App\Models\Setting::get('site_name', config('app.name'));
         $pageDescription = $description ?? \App\Models\Setting::get('meta_description_default', 'Kritis Sumsel — Kanal berita terkini seputar Sumatera Selatan: politik, ekonomi, hukum, olahraga, dan peristiwa.');
+        $siteFavicon = \App\Models\Setting::get('site_favicon', '');
     @endphp
 
     <title>{{ $pageTitle }}</title>
     <meta name="description" content="{{ $pageDescription }}">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="icon" href="{{ $siteFavicon ?: '/favicon.ico' }}">
 
     <meta property="og:title" content="{{ $pageTitle }}">
     <meta property="og:description" content="{{ $pageDescription }}">

@@ -28,4 +28,30 @@ class ImageUploadService
 
         return Storage::url($filename);
     }
+
+    /**
+     * Store a site identity asset (logo/favicon), preserving transparency and format.
+     */
+    public function storeSiteAsset(UploadedFile $file, string $folder, ?int $maxWidth = null): string
+    {
+        $extension = strtolower($file->getClientOriginalExtension()) ?: 'png';
+        $filename = $folder.'/'.Str::random(20).'.'.$extension;
+
+        if (in_array($extension, ['svg', 'ico'], true)) {
+            Storage::disk('public')->putFileAs($folder, $file, basename($filename));
+
+            return Storage::url($filename);
+        }
+
+        $manager = new ImageManager(new Driver);
+        $image = $manager->decodePath($file->getRealPath());
+
+        if ($maxWidth && $image->width() > $maxWidth) {
+            $image->scaleDown(width: $maxWidth);
+        }
+
+        Storage::disk('public')->put($filename, (string) $image->encodeUsingFileExtension($extension));
+
+        return Storage::url($filename);
+    }
 }
